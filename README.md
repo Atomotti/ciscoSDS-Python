@@ -1,5 +1,5 @@
 # ciscoSDS-Python
- Cisco UCSM Configuration for Scale-Out Object Storage based on Python
+ Cisco UCSM Configuration for Scale-Out Object Storage based on Python. Prerequistes for the script is
 
 ## ucsm.json
 Environment file for most configurations in UCS Manager
