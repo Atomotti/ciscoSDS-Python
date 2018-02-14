@@ -386,7 +386,8 @@ for i in range(1, vnic_number + 1):
 	vnic_name = raw_input("What is the name of vNIC " + str(i) + "?: ")
 	vnic_switch = raw_input("What is the Fabric ID? [A-B, B-A, A, B]: ")
 	vnic_mtu = raw_input("What is the MTU size? [default, 9000]: ")
-	vnic_qos = raw_input("What is the QoS Policy to use? [" + ', '.join(settings_file['qos_name']) + "]: ")
+	if settings_file['qos_policy'] == 'yes':
+		vnic_qos = raw_input("What is the QoS Policy to use? [" + ', '.join(settings_file['qos_name']) + "]: ")
 	vnic_vlan = raw_input("What is the VLAN to use? [" + ', '.join(settings_file['vlan_name']) + "]: ")
 	vnic_vlannative = raw_input("Native VLAN? [yes, no]: ")
 	mo = VnicLanConnTempl(parent_mo_or_dn=obj, redundancy_pair_type="none", name=vnic_name, stats_policy_name="default", switch_id=vnic_switch, mtu=vnic_mtu, policy_owner="local", templ_type="updating-template", qos_policy_name=vnic_qos, target="adaptor", ident_pool_name=settings_file['macpool_name'], cdn_source="vnic-name", nw_ctrl_policy_name=settings_file['cdp_name'])
@@ -665,7 +666,7 @@ handle.commit()
 
 
 # Create C220 Service Profile Template
-sp_number = input("\nHow many Service Profile Templates for C220 would you like to create?: ")
+sp_number = input("\nHow many Service Profiles for C220 would you like to create?: ")
 obj = handle.query_dn("org-root")
 for i in range(1, sp_number + 1):
 	sp220_name = raw_input("\nWhat is the name of the C220 Service Profile " + str(i) + "?: ")
@@ -723,7 +724,7 @@ for i in range(1, sp_number + 1):
 handle.commit()
 
 # Create S3260 Service Profile Template
-sp_number = input("\nHow many Service Profile Templates for S3260 would you like to create?: ")
+sp_number = input("\nHow many Service Profiles for S3260 would you like to create?: ")
 obj = handle.query_dn("org-root")
 for i in range(1, sp_number + 1):
 	sp3260_name = raw_input("\nWhat is the name of the S3260 Service Profile " + str(i) + "?: ")
